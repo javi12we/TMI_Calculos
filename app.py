@@ -60,7 +60,7 @@ st.markdown(titulo_color, unsafe_allow_html=True)
 texto_color = '''
 <style>
 .custom-text {
-    color: #e74c3c; /* Rojo */
+    color: #ffffff; /* Blanco */
     font-size: 20px;
     font-weight: bold;
     font-family: 'Roboto', sans-serif; /* Tipo de letra */
@@ -88,7 +88,7 @@ color_subtitulo = '''
 
 # Incrustar el CSS en la aplicación
 st.markdown(texto_color, unsafe_allow_html=True)
-st.markdown('<p class="custom-text">Edite la tabla para calcular los valores:</p>', unsafe_allow_html=True)
+st.markdown('<p class="custom-text">Puede editar la tabla para calcular los valores:</p>', unsafe_allow_html=True)
 gb = GridOptionsBuilder.from_dataframe(st.session_state.df)
 gb.configure_default_column(editable=True)  # Permitir edición en la tabla
 gridOptions = gb.build()
@@ -102,7 +102,7 @@ grid_response = AgGrid(
 
 # Crear el formulario para los parámetros adicionales
 with st.form("parametros_form"):
-    grados = st.number_input("Grados ()", value=2)
+    grados = st.number_input("Grados", value=2)
     minutos = st.number_input("Minutos", value=26)
     segundos = st.number_input("Segundos", value=0)
     orientacion = st.selectbox("Orientación", ['norte', 'sur'], index=0)
@@ -128,10 +128,13 @@ if submit_button:
     )
     
     # Mostrar el DataFrame resultante
-    st.write("Resultado del DataFrame:")
+    st.write("### Resultados:")
     st.dataframe(df_result)
 
     # Mostrar los resultados en forma de diccionario
-    st.write("Resultados:")
-    for key, value in resultados.items():
-        st.write(f"{key}: {value}")
+    st.metric(label="Índice de humedad (Ih)", value=f"{resultados['Índice de humedad (Ih)']:.2f}")
+    st.metric(label="Índice de aridez (Ia)", value=f"{resultados['Índice de aridez (Ia)']:.2f}")
+    st.metric(label="Índice de Thornthwaite (Im)", value=f"{resultados['Índice de Thornthwaite (Im)']:.2f}")
+    st.metric(label="Índice de Thornthwaite 1955", value=f"{resultados['Índice de Thornthwaite 1955']:.2f}")
+    st.metric(label="Índice de Thornthwaite, Witzack", value=f"{resultados['Índice de Thornthwaite, Witzack']:.2f}")
+    st.metric(label="Clasificación climática", value=resultados['Clasificación climática'])

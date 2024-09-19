@@ -20,14 +20,75 @@ if 'df' not in st.session_state:
 
 if 'datos_n' not in st.session_state:
     st.session_state.datos_n = cargar_datos_n()
+# Mostrar un fondo de pantalla para el aplicativo
+import streamlit as st
+
+# CSS personalizado para el fondo
+page_bg_img = '''
+<style>
+.stApp {
+    background-image: url("https://files.rcnradio.com/public/styles/sitemap_seo/public/2019-12/whatsapp_image_2019-12-19_at_1.29.22_pm_0.jpeg?VersionId=_u0aREPgq2e77kVoxkCRGmJ5flCV6H1v&itok=d9L30kt3");
+    background-size: cover;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+</style>
+'''
+
+# Incrustar el CSS en la aplicación
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 
 # Cargar y mostrar una imagen desde una URL
-st.image("https://www.invias.gov.co/ambiental/img/logo_inv_letra_blanca.png", caption="Imagen desde una URL", use_column_width=True)
+st.image("https://www.invias.gov.co/ambiental/img/logo_inv_letra_blanca.png", use_column_width=True)
 
-# Mostrar la tabla interactiva editable
-st.title("Cálculo de Índices")
+# Mostrar la tabla interactiva editable con su titulo
+import streamlit as st
+st.title("Cálculo de Índices TMI")
+titulo_color = '''
+<style>
+h1 {
+    color: #ff7700; /* Naranja llamativo */
+    font-family: 'Futura', sans-serif; /* Tipo de letra Futura */
+}
+</style>
+'''
+st.markdown(titulo_color, unsafe_allow_html=True)
 
-st.write("Edita el DataFrame antes de calcular los índices:")
+# Estilo para el mensaje de texto y la viñeta
+texto_color = '''
+<style>
+.custom-text {
+    color: #e74c3c; /* Rojo */
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif; /* Tipo de letra */
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #4f4f4f; /* Gris oscuro */
+    border: 2px solid #000000; /* Borde negro */
+}
+</style>
+'''
+
+st.markdown(texto_color, unsafe_allow_html=True)
+
+
+
+color_subtitulo = '''
+<style>
+.custom-text {
+    color: #ffffff; /* Blanco */
+    font-size: 20px;
+    font-weight: bold;
+}
+</style>
+'''
+
+# Incrustar el CSS en la aplicación
+st.markdown(texto_color, unsafe_allow_html=True)
+st.markdown('<p class="custom-text">Edite la tabla para calcular los valores:</p>', unsafe_allow_html=True)
 gb = GridOptionsBuilder.from_dataframe(st.session_state.df)
 gb.configure_default_column(editable=True)  # Permitir edición en la tabla
 gridOptions = gb.build()

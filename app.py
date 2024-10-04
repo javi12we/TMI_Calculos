@@ -102,8 +102,8 @@ grid_response = AgGrid(
 
 # Crear el formulario para los parámetros adicionales
 with st.form("parametros_form"):
-    grados = st.number_input("Grados", value=2)
-    minutos = st.number_input("Minutos", value=26)
+    grados = st.number_input("Grados", value=0, min_value=0)
+    minutos = st.number_input("Minutos", value=0,min_value=0)
     segundos = st.number_input("Segundos", value=0)
     orientacion = st.selectbox("Orientación", ['norte', 'sur'], index=0)
     amax = st.number_input("Amax", value=100)
@@ -136,5 +136,5 @@ if submit_button:
     st.metric(label="Índice de aridez (Ia)", value=f"{resultados['Índice de aridez (Ia)']:.2f}")
     st.metric(label="Índice de Thornthwaite (Im)", value=f"{resultados['Índice de Thornthwaite (Im)']:.2f}")
     st.metric(label="Índice de Thornthwaite 1955", value=f"{resultados['Índice de Thornthwaite 1955']:.2f}")
-    st.metric(label="Índice de Thornthwaite, Witzack", value=f"{resultados['Índice de Thornthwaite, Witzack']:.2f}")
     st.metric(label="Clasificación climática", value=resultados['Clasificación climática'])
+    

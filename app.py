@@ -7,9 +7,17 @@ from services.calculos_tmi import calcular_indices
 mongo_connection = MongoDBConnection()
 db = mongo_connection.get_database()
 
-# Función para cargar los datos desde MongoDB
+# Lista de los meses en español en el orden correcto
+meses_ordenados = [
+    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+]
+
+# Función para cargar y ordenar los datos por la columna "mes"
 def cargar_datos_base():
-    return pd.DataFrame(list(db['tmi_valores_mensuales'].find({}, {'_id': 0})))
+    df_base = pd.DataFrame(list(db['tmi_valores_mensuales'].find({}, {'_id': 0})))
+    df_base['mes'] = pd.Categorical(df_base['mes'], categories=meses_ordenados, ordered=True)
+    return df_base.sort_values('mes')
 
 def cargar_datos_n():
     return pd.DataFrame(list(db['n'].find({}, {'_id': 0})))

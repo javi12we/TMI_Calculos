@@ -7,7 +7,7 @@ st.set_page_config(layout="wide")
 # Diccionario de páginas
 pages = {
     "Inicio": home,
-    "Cáculo TMI": calculos_tmi
+    "Cálculo TMI": calculos_tmi
 }
 
 def main():

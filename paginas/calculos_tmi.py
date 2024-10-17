@@ -31,16 +31,7 @@ def show():
     if 'datos_n' not in st.session_state:
         st.session_state.datos_n = cargar_datos_n()
 
-    st.title("Cálculo de Índices TMI")
-    titulo_color = '''
-    <style>
-    h1 {
-        color: #ff7700; /* Naranja llamativo */
-        font-family: 'Futura', sans-serif; /* Tipo de letra Futura */
-    }
-    </style>
-    '''
-    st.markdown(titulo_color, unsafe_allow_html=True)
+    st.title("ÍNDICES TMI")
 
     # Estilo para el mensaje de texto y la viñeta
     texto_color = '''

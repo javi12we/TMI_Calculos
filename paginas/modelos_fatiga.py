@@ -84,3 +84,6 @@ def show():
         )
         
         st.dataframe(df_indice_fatiga_modelo)
+        # Botón para reiniciar la página
+        if st.button("Limpiar datos"):
+            st.experimental_rerun()

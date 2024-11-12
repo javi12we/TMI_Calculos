@@ -41,7 +41,7 @@ def graficar_modelos_fatiga(df_microstrain_modelo):
     # Crear la gráfica usando Plotly Express con líneas y puntos
     fig = px.scatter(df_long, x='ni_transito', y='Valores', color='Modelo', symbol='Modelo', 
                      log_x=True, log_y=True, title='Comparación de Modelos de Fatiga en función del Número de Tránsitos',
-                     labels={'ni_transito': 'Número de Tránsitos', 'Valores': 'Valores Modelos de Fatiga'})
+                     labels={'ni_transito': 'Número de Tránsitos', 'Valores': 'Valores Modelos de Fatiga με'})
 
     # Agregar líneas conectando los puntos
     fig.update_traces(mode='lines+markers')

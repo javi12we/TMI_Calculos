@@ -70,7 +70,7 @@ def show():
         
         # Mostrar el DataFrame resultante
         st.write("### Microstrain Del Modelo Calculado:")
-        st.dataframe(df_microstrain_modelo)
+        st.dataframe(df_microstrain_modelo.round(2))
         
         graficar_modelos_fatiga(df_microstrain_modelo)
         
@@ -83,7 +83,4 @@ def show():
             factor_ajuste_resistencia=factor_ajuste_resistencia
         )
         
-        st.dataframe(df_indice_fatiga_modelo)
-        # Botón para reiniciar la página
-        if st.button("Limpiar datos"):
-            st.experimental_rerun()
+        st.dataframe(df_indice_fatiga_modelo.round(2))

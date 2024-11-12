@@ -105,4 +105,4 @@ def show():
         
         # Botón para reiniciar la página
         if st.button("Limpiar datos"):
-            st.experimental_rerun()
+            st.rerun()

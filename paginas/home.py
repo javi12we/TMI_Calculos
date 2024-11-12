@@ -5,7 +5,7 @@ def show():
     st.write("""
     Desde el Invías queremos apoyar a los diseñadores en el cálculo de pavimentos flexibles en nuestro país
     
-    El presente aplicativo,  no es un software de diseño, solo es una herramienta para complementar los calculos de los diseñadores...
+    El presente aplicativo,  no es un software de diseño, solo es una herramienta para complementar los calculos de los diseñadores.
     """)
     
     # CSS personalizado para el fondo

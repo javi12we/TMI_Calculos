@@ -1,5 +1,5 @@
 import streamlit as st
-from paginas import home, calculos_tmi, modelos_fatiga
+from paginas import home, calculos_tmi, modelos_fatiga, swcc
 
 # Configuración de la página para ancho completo
 st.set_page_config(layout="wide")
@@ -8,7 +8,8 @@ st.set_page_config(layout="wide")
 pages = {
     "Inicio": home,
     "Cálculo TMI": calculos_tmi,
-    "Modelos de Fatiga": modelos_fatiga
+    "Modelos de Fatiga": modelos_fatiga,
+    "SWCC": swcc
 }
 
 titulo_color = '''

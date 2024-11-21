@@ -1,9 +1,11 @@
 import streamlit as st
 
 def show():
-    st.title("Bienvenido a CÁLCULOS INVIAS")
+    st.title("Bienvenido a Aplicativos Manuales pavimentos flexibles INVIAS")
     st.write("""
-    Esta es la página de inicio...
+    Desde el Invías queremos apoyar a los diseñadores en el cálculo de pavimentos flexibles en nuestro país
+    
+    El presente aplicativo,  no es un software de diseño, solo es una herramienta para complementar los calculos de los diseñadores.
     """)
     
     # CSS personalizado para el fondo

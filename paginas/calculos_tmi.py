@@ -102,3 +102,7 @@ def show():
         st.metric(label="Índice de Thornthwaite (Im)", value=f"{resultados['Índice de Thornthwaite (Im)']:.2f}")
         st.metric(label="Índice de Thornthwaite 1955", value=f"{resultados['Índice de Thornthwaite 1955']:.2f}")
         st.metric(label="Clasificación climática", value=resultados['Clasificación climática'])
+        
+        # Botón para reiniciar la página
+        if st.button("Limpiar datos"):
+            st.rerun()

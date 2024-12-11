@@ -12,7 +12,7 @@ def show():
     page_bg_img = '''
     <style>
     .stApp {
-        background-image: url("https://c.pxhere.com/photos/c9/b6/asphalt_dark_lights_long_exposure_night_road_street-1145405.jpg!d");
+        background-image: url("https://www.noticiaslagaceta.com/wp-content/uploads/2022/10/Derrumbe-San-Miguel.jpg");
         background-size: cover;
         background-position: top left;
         background-repeat: no-repeat;
@@ -49,17 +49,14 @@ def show():
     <div class="custom-text">
         <h3>Instructivo</h3>
         <ol>
-            <li>Ingrese los datos de entrada en el formulario con:
+            <li>Ingrese el nivel de transito (ni) en la tabla:
+            <li>Ingrese los demas datos de entrada en el formulario:
                 <ul>
-                    <li>Módulo elástico del material (E) [MPa]</li>
-                    <li>Volumen de vacíos del agregado mineral (Vd) [%]</li>
-                    <li>Volumen de vacíos de aire (Va) [%]</li>
-                    <li>Deformación permisible de tracción (εt) [%]</li>
+                    <li>Módulo de la Mezcla (MPa)</li>
+                    <li>Espesor Mezcla Asfáltica (cm)</li>
                 </ul>
             </li>
-            <li>Presione el botón "Calcular" para generar los resultados.</li>
-            <li>Los resultados determinan la rigidez inicial del material del pavimento, clave para modelar su capacidad de resistir cargas y deformaciones bajo condiciones específicas..</li>
-        </ol>
+            <li>Presione el botón "Calcular Modelos" para generar los resultados.</li>
     </div>
     ''', unsafe_allow_html=True)
     # Incrustar el CSS en la aplicación

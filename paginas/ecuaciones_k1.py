@@ -15,7 +15,7 @@ def show():
     page_bg_img = '''
     <style>
     .stApp {
-        background-image: url("https://files.rcnradio.com/public/styles/sitemap_seo/public/2019-12/whatsapp_image_2019-12-19_at_1.29.22_pm_0.jpeg?VersionId=_u0aREPgq2e77kVoxkCRGmJ5flCV6H1v&itok=d9L30kt3");
+        background-image: url("https://chm.es/wp-content/uploads/2023/10/firmes_0007_IMG_0235.jpg");
         background-size: cover;
         background-position: top left;
         background-repeat: no-repeat;

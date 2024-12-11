@@ -30,7 +30,22 @@ def show():
 
     if 'datos_n' not in st.session_state:
         st.session_state.datos_n = cargar_datos_n()
+    
+# CSS personalizado para el fondo
+    page_bg_img = '''
+    <style>
+    .stApp {
+        background-image: url("https://files.rcnradio.com/public/2021-09/whatsapp_image_2021-09-06_at_10.45.13_am_0.jpeg?VersionId=NwszBMNbYjJ7P_ihws.xyjBuD9OHiMFe");
+        background-size: cover;
+        background-position: top left;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    </style>
+    '''
 
+    # Incrustar el CSS en la aplicación
+    st.markdown(page_bg_img, unsafe_allow_html=True)
     st.title("ÍNDICES TMI")
 
     # Estilo para el mensaje de texto y la viñeta
@@ -45,15 +60,44 @@ def show():
         border-radius: 10px;
         background-color: #4f4f4f; /* Gris oscuro */
         border: 2px solid #000000; /* Borde negro */
+        max-width: 600px; /* Ancho máximo */
     }
     </style>
     '''
-
-    st.markdown(texto_color, unsafe_allow_html=True)
-
     # Incrustar el CSS en la aplicación
     st.markdown(texto_color, unsafe_allow_html=True)
-    st.markdown('<p class="custom-text">Puede editar la tabla para calcular los valores:</p>', unsafe_allow_html=True)
+
+    # Viñeta del instructivo
+    st.markdown('''
+    <div class="custom-text">
+        <h3>Instructivo</h3>
+        <ol>
+            <li>Ingrese los datos de entrada en la tabla TMI con las columnas:
+                <ul>
+                    <li>Mes</li>
+                    <li>Temperatura</li>
+                    <li>Precipitación</li>
+                    <li>d</li>
+                </ul>
+            </li>
+            <li>Ingrese los datos de entrada en el formulario con:
+                <ul>
+                    <li>Grados</li>
+                    <li>Minutos</li>
+                    <li>Segundos</li>
+                    <li>Orientación (Norte o Sur)</li>
+                    <li>Amax</li>
+                </ul>
+            </li>
+            <li>Presione el botón "Calcular índices" para generar los resultados.</li>
+            <li>Los resultados incluirán índices climáticos y su clasificación.</li>
+        </ol>
+    </div>
+    ''', unsafe_allow_html=True)
+
+    # Incrustar el CSS en la aplicación
+    st.markdown("### Tabla de datos de entrada TMI")
+    st.markdown("Puede editar el mes, la temperatiura, la precipitación y el dia (d): ")
     gb = GridOptionsBuilder.from_dataframe(st.session_state.df)
     gb.configure_default_column(editable=True)  # Permitir edición en la tabla
     gridOptions = gb.build()
@@ -64,10 +108,11 @@ def show():
         update_mode=GridUpdateMode.MODEL_CHANGED,
         theme='streamlit',  # Cambiar el tema si lo deseas
     )
-
+    st.markdown("### Formulario de datos de entrada TMI")
+    st.markdown("Adicionalmente edite los Grados, Minutos, Segundos, Orientación  y el Amax del modelo para calcular el TMI completo:")
     # Crear el formulario para los parámetros adicionales
     with st.form("parametros_form"):
-        grados = st.number_input("Grados", value=0, min_value=0)
+        grados = st.number_input("Grados", value=0, min_value=0, max_value=14)
         minutos = st.number_input("Minutos", value=0,min_value=0)
         segundos = st.number_input("Segundos", value=0)
         orientacion = st.selectbox("Orientación", ['norte', 'sur'], index=0)
@@ -103,6 +148,3 @@ def show():
         st.metric(label="Índice de Thornthwaite 1955", value=f"{resultados['Índice de Thornthwaite 1955']:.2f}")
         st.metric(label="Clasificación climática", value=resultados['Clasificación climática'])
         
-        # Botón para reiniciar la página
-        if st.button("Limpiar datos"):
-            st.rerun()

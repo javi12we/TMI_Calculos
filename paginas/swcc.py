@@ -46,8 +46,59 @@ def show():
     # Estado inicial de la aplicación: cargar datos base de WPI si no se han cargado
     if 'df_WPI' not in st.session_state:
         st.session_state.df_WPI = df_WPI_base.copy()
+        
+    # CSS personalizado para el fondo
+    page_bg_img = '''
+    <style>
+    .stApp {
+        background-image: url("https://files.rcnradio.com/public/2021-09/whatsapp_image_2021-09-06_at_10.45.13_am_0.jpeg?VersionId=NwszBMNbYjJ7P_ihws.xyjBuD9OHiMFe");
+        background-size: cover;
+        background-position: top left;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    </style>
+    '''
 
     st.title("SWCC - Curva Característica de Retención de Agua en el Suelo")
+    # Incrustar el CSS en la aplicación
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+    # Estilo para el mensaje de texto y la viñeta
+    texto_color = '''
+    <style>
+    .custom-text {
+        color: #ffffff; /* Blanco */
+        font-size: 20px;
+        font-weight: bold;
+        font-family: 'Roboto', sans-serif; /* Tipo de letra */
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #4f4f4f; /* Gris oscuro */
+        border: 2px solid #000000; /* Borde negro */
+        max-width: 600px; /* Ancho máximo */
+    }
+    </style>
+    '''
+    # Viñeta del instructivo
+    st.markdown('''
+    <div class="custom-text">
+        <h3>Instructivo</h3>
+        <ol>
+            <li>Ingrese los datos de entrada en el formulario con:
+                <ul>
+                    <li>Módulo elástico del material (E) [MPa]</li>
+                    <li>Volumen de vacíos del agregado mineral (Vd) [%]</li>
+                    <li>Volumen de vacíos de aire (Va) [%]</li>
+                    <li>Deformación permisible de tracción (εt) [%]</li>
+                </ul>
+            </li>
+            <li>Presione el botón "Calcular" para generar los resultados.</li>
+            <li>Los resultados determinan la rigidez inicial del material del pavimento, clave para modelar su capacidad de resistir cargas y deformaciones bajo condiciones específicas..</li>
+        </ol>
+    </div>
+    ''', unsafe_allow_html=True)
+    # Incrustar el CSS en la aplicación
+    st.markdown(texto_color, unsafe_allow_html=True)
     
     # Mostrar tabla editable de WPI
     st.markdown("### Tabla editable de WPI")

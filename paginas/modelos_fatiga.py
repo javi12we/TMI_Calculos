@@ -8,11 +8,63 @@ from services.modelos_fatiga import calcular_modelos_microstrain, graficar_model
 df_micro = pd.DataFrame({"ni_transito": [10000, 100000, 1000000, 10000000, 100000000, 1000000000]})
 
 def show():
+    # CSS personalizado para el fondo
+    page_bg_img = '''
+    <style>
+    .stApp {
+        background-image: url("https://www.noticiaslagaceta.com/wp-content/uploads/2022/10/Derrumbe-San-Miguel.jpg");
+        background-size: cover;
+        background-position: top left;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    </style>
+    '''
+    
     if 'df_micro' not in st.session_state:
         st.session_state.df_micro = df_micro.copy()
 
     # Título principal
     st.title('MODELOS DE FATIGA')
+    # Incrustar el CSS en la aplicación
+    st.markdown(page_bg_img, unsafe_allow_html=True)
+    # Estilo para el mensaje de texto y la viñeta
+    texto_color = '''
+    <style>
+    .custom-text {
+        color: #ffffff; /* Blanco */
+        font-size: 20px;
+        font-weight: bold;
+        font-family: 'Roboto', sans-serif; /* Tipo de letra */
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #4f4f4f; /* Gris oscuro */
+        border: 2px solid #000000; /* Borde negro */
+        max-width: 600px; /* Ancho máximo */
+    }
+    </style>
+    '''
+    # Viñeta del instructivo
+    st.markdown('''
+    <div class="custom-text">
+        <h3>Instructivo</h3>
+        <ol>
+            <li>Ingrese el nivel de transito (ni) en la tabla:
+            <li>Ingrese los demas datos de entrada en el formulario:
+                <ul>
+                    <li>Módulo de la Mezcla (MPa)</li>
+                    <li>Espesor Mezcla Asfáltica (cm)</li>
+                </ul>
+            </li>
+            <li>Presione el botón "Calcular Modelos" para generar los resultados.</li>
+    </div>
+    ''', unsafe_allow_html=True)
+    # Incrustar el CSS en la aplicación
+    st.markdown(texto_color, unsafe_allow_html=True)
+    st.markdown('<p class="custom-text">Edite los valores en el formulario y la tabla (ni) para calcular:</p>', unsafe_allow_html=True)
+    st.markdown("### Tabla editable de los niveles de transito")
+    st.markdown("Puede editar los niveles de transito en la siguiente tabla:")
+    
 
     # Introducción
     st.write("""
@@ -31,8 +83,8 @@ def show():
         theme='streamlit',
         height=210,
     )
-
-    # Formulario de entrada
+    st.markdown("### Formulario de datos de entrada")
+    st.markdown("Puede editar el Módulo de la Mezcla y Espesor de la Mezcla Asfaltica (cm) para calcular: ")
     with st.form("parametros_form"):
         modulo_mezcla = st.number_input("Módulo de la Mezcla (MPa)", value=4500, min_value=0)
         espesor_mezcla_asfaltica_cm = st.number_input("Espesor Mezcla Asfáltica (cm)", value=15, min_value=0)

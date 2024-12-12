@@ -43,11 +43,53 @@ def format_df_to_string(df):
     return df.applymap(lambda x: f"{x:.10f}".rstrip('0').rstrip('.') if isinstance(x, float) else x)
 
 def show():
+    # CSS personalizado para el fondo
+    page_bg_img = '''
+    <style>
+    .stApp {
+        background-image: url("https://chm.es/wp-content/uploads/2023/10/firmes_0007_IMG_0235.jpg");
+        background-size: cover;
+        background-position: top left;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    </style>
+    '''
+    # Estilo para el mensaje de texto y la viñeta
+    texto_color = '''
+    <style>
+    .custom-text {
+        color: #ffffff; /* Blanco */
+        font-size: 20px;
+        font-weight: bold;
+        font-family: 'Roboto', sans-serif; /* Tipo de letra */
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #4f4f4f; /* Gris oscuro */
+        border: 2px solid #000000; /* Borde negro */
+        max-width: 600px; /* Ancho máximo */
+    }
+    </style>
+    '''
+    # Viñeta del instructivo
+    st.markdown('''
+    <div class="custom-text">
+        <h3>Instructivo</h3>
+        <ol>
+            <li>Modifique el valor WPI en la tabla:
+            </li>
+            <li>Presione el botón "Calcular Parametros y grafico" para generar los resultados.</li>
+    </div>
+    ''', unsafe_allow_html=True)
+    # Incrustar el CSS en la aplicación
+    st.markdown(texto_color, unsafe_allow_html=True)
     # Estado inicial de la aplicación: cargar datos base de WPI si no se han cargado
     if 'df_WPI' not in st.session_state:
         st.session_state.df_WPI = df_WPI_base.copy()
 
     st.title("SWCC - Curva Característica de Retención de Agua en el Suelo (WPI)")
+    # Incrustar el CSS en la aplicación
+    st.markdown(page_bg_img, unsafe_allow_html=True)
     
     # Mostrar tabla editable de WPI
     st.markdown("### Tabla editable de WPI")

@@ -1,5 +1,5 @@
 import streamlit as st
-from paginas import home, indices_tmi, modelos_fatiga, ecuaciones_k1, swcc_wpi, swcc_d60, tmi_anual
+from paginas import home, indices_tmi, modelos_fatiga, ecuaciones_k1, swcc_wpi, swcc_d60, tmi_mensual
 
 # Configuración de la página para ancho completo
 st.set_page_config(layout="wide")
@@ -9,7 +9,7 @@ pages = {
     "Inicio": home,
     "Cálculo TMI": {
         "Indices TMI": indices_tmi,
-        "Indices TMI Anual": tmi_anual,
+        "Indices TMI Anual": tmi_mensual,
     },
     "Modelos de Fatiga": modelos_fatiga,
     "SWCC": {

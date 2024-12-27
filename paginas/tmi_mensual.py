@@ -59,6 +59,18 @@ def show():
     if 'TMI_tabla' not in st.session_state:
         st.session_state.TMI_tabla = TMI_tabla.copy()
     
+    # CSS personalizado para el fondo
+    page_bg_img = '''
+    <style>
+    .stApp {
+        background-image: url("https://files.rcnradio.com/public/2021-09/whatsapp_image_2021-09-06_at_10.45.13_am_0.jpeg?VersionId=NwszBMNbYjJ7P_ihws.xyjBuD9OHiMFe");
+        background-size: cover;
+        background-position: top left;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    </style>
+    '''
     # Estilo para el mensaje de texto y la viñeta
     texto_color = '''
     <style>
@@ -75,6 +87,7 @@ def show():
     }
     </style>
     '''
+    st.title("Indices TMI Mensuales")
     # Viñeta del instructivo
     st.markdown('''
     <div class="custom-text">
@@ -91,7 +104,6 @@ def show():
                 <ul>
                     <li>P200</li>
                     <li>PI</li>
-                    <li>WPI</li>
                 </ul>
             </li>
             <li>Modifique los valores de entrada D60 para el calculo de TMI para suelos Finos y Gruesos :
@@ -111,10 +123,10 @@ def show():
     ''', unsafe_allow_html=True)
     # Incrustar el CSS en la aplicación
     st.markdown(texto_color, unsafe_allow_html=True)
-    st.title("Indices TMI Anuales")
     # Incrustar el CSS en la aplicación
+    st.markdown(page_bg_img, unsafe_allow_html=True)
     st.markdown("### Tabla editable TMI")
-    st.markdown("Puede editar los valores de temperatura mensual, dias y el Pi(mm) en la siguiente tabla:")
+    st.markdown("Puede editar los valores de temperatura mensual, dias(d) y el Pi(mm) en la siguiente tabla:")
     
     # Tabla editable
     st.subheader("Niveles de Tránsito")

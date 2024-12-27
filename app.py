@@ -8,8 +8,8 @@ st.set_page_config(layout="wide")
 pages = {
     "Inicio": home,
     "Cálculo TMI": {
-        "Indices TMI": indices_tmi,
-        "Indices TMI Anual": tmi_mensual,
+        "Indices TMI Anual": indices_tmi,
+        "Indices TMI Mensual": tmi_mensual,
     },
     "Modelos de Fatiga": modelos_fatiga,
     "SWCC": {

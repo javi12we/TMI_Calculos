@@ -1,5 +1,9 @@
+import streamlit
 from pymongo import MongoClient
 from threading import Lock
+import os
+import dotenv
+dotenv.load_dotenv()
 
 class MongoDBConnection:
     _instance = None
@@ -15,8 +19,19 @@ class MongoDBConnection:
         return cls._instance
 
     def _initialize_connection(self):
-        # Aquí estableces los parámetros de conexión
-        self.client = MongoClient('mongodb+srv://cristian:bZx4iO6xzHcQtcZg@invias.aspcs.mongodb.net/')
+        # Leer la variable de entorno MONGO_URL
+        mongo_url = os.getenv('MONGO_URL')
+
+        # Si no se encuentra la variable de entorno, intentar leerla del secreto de Streamlit Cloud
+        if not mongo_url:
+            try:
+                mongo_url = streamlit.secrets["MONGO_URL"]
+            except KeyError:
+                raise ValueError("La variable de entorno MONGO_URL no está definida y no se encontró en los secretos de Streamlit Cloud.")
+
+
+        # Conectar a MongoDB usando la URL
+        self.client = MongoClient(mongo_url) 
         self.db = self.client['db_invias']
 
     def get_database(self):
